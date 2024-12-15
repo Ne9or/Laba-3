@@ -1,4 +1,4 @@
-#include "sort.h"
+#include "../include/sort.h"
 
 void gnome_sort(Deque* deque, Comparator cmp) {
     size_t index = 0;

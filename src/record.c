@@ -1,9 +1,8 @@
-#include "record.h"
+#include "../include/record.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-// Инициализация записи
 void record_init(Record* record, const char* developer, const char* neighborhood,
                  BuildingType type, int build_year, bool has_elevator,
                  bool has_garbage_chute, int flat_count, int floor_count,
@@ -23,14 +22,11 @@ void record_init(Record* record, const char* developer, const char* neighborhood
     record->avg_flat_area = avg_flat_area;
 }
 
-// Компаратор для сортировки записей
 int record_compare(const Record* a, const Record* b, bool ascending) {
-    // Пример сравнения по году постройки
     int result = a->build_year - b->build_year;
     return ascending ? result : -result;
 }
 
-// Чтение записи из файла
 bool record_read(FILE* file, Record* record) {
     char developer[64];
     char neighborhood[64];
@@ -60,7 +56,6 @@ bool record_read(FILE* file, Record* record) {
     return true;
 }
 
-// Запись записи в файл
 void record_write(FILE* file, const Record* record) {
     fprintf(file, "%s,%s,%s,%d,%s,%s,%d,%d,%.2lf\n",
             record->developer,
@@ -74,7 +69,6 @@ void record_write(FILE* file, const Record* record) {
             record->avg_flat_area);
 }
 
-// Парсинг типа здания из строки
 BuildingType string_to_building_type(const char* type_str) {
     if (strcmp(type_str, "PANEL") == 0) {
         return PANEL;
@@ -87,7 +81,6 @@ BuildingType string_to_building_type(const char* type_str) {
     exit(EXIT_FAILURE);
 }
 
-// Конвертация типа здания в строку
 const char* building_type_to_string(BuildingType type) {
     switch (type) {
         case PANEL:

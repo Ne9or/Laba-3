@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "sort.h": "c",
+        "record.h": "c",
+        "parse.h": "c",
+        "string.h": "c"
+    }
+}
