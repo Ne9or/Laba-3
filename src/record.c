@@ -45,7 +45,7 @@ bool record_read(FILE* file, Record* record) {
         return false;
     }
 
-    record->type = string_to_building_type(type_str);
+    record->type = building_type_to_string(type_str);
     record->has_elevator = strcmp(has_elevator_str, "YES") == 0;
     record->has_garbage_chute = strcmp(has_garbage_chute_str, "YES") == 0;
 

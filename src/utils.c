@@ -20,8 +20,6 @@ const char* building_type_to_string(BuildingType type) {
     }
 }
 
-BuildingType types[] = {BUILDING_TYPE_PANEL, BUILDING_TYPE_BRICK, BUILDING_TYPE_MONOLITH};
-
 //comparisons
 int compare_asc(const Record* a, const Record* b) {
     return a->build_year - b->build_year;
@@ -91,7 +89,7 @@ void generate_mode(int count, const char* output_file) {
         exit(EXIT_FAILURE);
     }
 
-    //BuildingType types[] = {BUILDING_TYPE_PANEL, BUILDING_TYPE_BRICK, BUILDING_TYPE_MONOLITH};
+    BuildingType types[] = {BUILDING_TYPE_PANEL, BUILDING_TYPE_BRICK, BUILDING_TYPE_MONOLITH};
 
     for (int i = 0; i < count; i++) {
         Record record;
