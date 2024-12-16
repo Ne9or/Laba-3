@@ -52,7 +52,6 @@ void parse_arguments(int argc, char* argv[]) {
     if (generate_flag && sort_flag) {
         generate_mode(generate_count, input_file);
         sort_mode(input_file, output_file, ascending);
-        //combined_mode(input_file, output_file, ascending);
     } else if (generate_flag) {
         generate_mode(generate_count, output_file);
     } else if (sort_flag) {

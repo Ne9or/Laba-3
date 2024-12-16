@@ -45,7 +45,7 @@ bool record_read(FILE* file, Record* record) {
         return false;
     }
 
-    record->type = building_type_to_string(type_str);
+    record->type = string_to_building_type(type_str);
     record->has_elevator = strcmp(has_elevator_str, "YES") == 0;
     record->has_garbage_chute = strcmp(has_garbage_chute_str, "YES") == 0;
 
@@ -80,16 +80,3 @@ BuildingType string_to_building_type(const char* type_str) {
        fprintf(stderr, "Error: Unknown building type '%s'\n", type_str);
        exit(EXIT_FAILURE);
 }
-
-// const char* building_type_to_string(BuildingType type) {
-//     switch (type) {
-//         case BUILDING_TYPE_PANEL:
-//             return "PANEL";
-//         case BUILDING_TYPE_BRICK:
-//             return "BRICK";
-//         case BUILDING_TYPE_MONOLITH:
-//             return "MONOLITH";
-//         default:
-//             return "UNKNOWN";
-//     }
-// }
