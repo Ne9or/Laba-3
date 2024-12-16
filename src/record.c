@@ -70,26 +70,26 @@ void record_write(FILE* file, const Record* record) {
 }
 
 BuildingType string_to_building_type(const char* type_str) {
-    if (strcmp(type_str, "PANEL") == 0) {
-        return PANEL;
-    } else if (strcmp(type_str, "BRICK") == 0) {
-        return BRICK;
-    } else if (strcmp(type_str, "MONOLITH") == 0) {
-        return MONOLITH;
-    }
-    fprintf(stderr, "Error: Unknown building type '%s'\n", type_str);
-    exit(EXIT_FAILURE);
+       if (strcmp(type_str, "PANEL") == 0) {
+           return BUILDING_TYPE_PANEL;
+       } else if (strcmp(type_str, "BRICK") == 0) {
+           return BUILDING_TYPE_BRICK;
+       } else if (strcmp(type_str, "MONOLITH") == 0) {
+           return BUILDING_TYPE_MONOLITH;
+       }
+       fprintf(stderr, "Error: Unknown building type '%s'\n", type_str);
+       exit(EXIT_FAILURE);
 }
 
-const char* building_type_to_string(BuildingType type) {
-    switch (type) {
-        case PANEL:
-            return "PANEL";
-        case BRICK:
-            return "BRICK";
-        case MONOLITH:
-            return "MONOLITH";
-        default:
-            return "UNKNOWN";
-    }
-}
+// const char* building_type_to_string(BuildingType type) {
+//     switch (type) {
+//         case BUILDING_TYPE_PANEL:
+//             return "PANEL";
+//         case BUILDING_TYPE_BRICK:
+//             return "BRICK";
+//         case BUILDING_TYPE_MONOLITH:
+//             return "MONOLITH";
+//         default:
+//             return "UNKNOWN";
+//     }
+// }

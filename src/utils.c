@@ -7,6 +7,21 @@
 #include "../include/sort.h"
 
 
+const char* building_type_to_string(BuildingType type) {
+    switch (type) {
+        case BUILDING_TYPE_PANEL:
+            return "PANEL";
+        case BUILDING_TYPE_BRICK:
+            return "BRICK";
+        case BUILDING_TYPE_MONOLITH:
+            return "MONOLITH";
+        default:
+            return "UNKNOWN";
+    }
+}
+
+BuildingType types[] = {BUILDING_TYPE_PANEL, BUILDING_TYPE_BRICK, BUILDING_TYPE_MONOLITH};
+
 //comparisons
 int compare_asc(const Record* a, const Record* b) {
     return a->build_year - b->build_year;
@@ -76,11 +91,14 @@ void generate_mode(int count, const char* output_file) {
         exit(EXIT_FAILURE);
     }
 
+    //BuildingType types[] = {BUILDING_TYPE_PANEL, BUILDING_TYPE_BRICK, BUILDING_TYPE_MONOLITH};
+
     for (int i = 0; i < count; i++) {
         Record record;
         snprintf(record.developer, sizeof(record.developer), "Developer_%d", i);
         snprintf(record.neighborhood, sizeof(record.neighborhood), "Neighborhood_%d", i);
-        record.type = i % 3;
+
+        record.type = types[rand() % 3];
         record.build_year = 1950 + rand() % 75;
         record.has_elevator = rand() % 2;
         record.has_garbage_chute = rand() % 2;
@@ -142,6 +160,10 @@ void sort_mode(const char* input_file, const char* output_file, bool ascending) 
     Node* node = deque.head;
     while (node) {
         Record* record = &node->data;
+
+        // printf("Type value: %d\n", record->type);
+        // printf("Type string: %s\n", building_type_to_string(record->type));
+
         fprintf(out, "%s,%s,%s,%d,%s,%s,%d,%d,%.2f\n",
                 record->developer,
                 record->neighborhood,

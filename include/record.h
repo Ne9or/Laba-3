@@ -4,9 +4,9 @@
 #include <stdbool.h>
 
 typedef enum {
-    PANEL,
-    BRICK,
-    MONOLITH
+    BUILDING_TYPE_PANEL,
+    BUILDING_TYPE_BRICK,
+    BUILDING_TYPE_MONOLITH
 } BuildingType;
 
 typedef struct {
