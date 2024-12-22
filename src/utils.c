@@ -51,7 +51,6 @@ void generate_mode(int count, const char* output_file) {
         record.flat_count = 50 + rand() % 151;
         record.floor_count = 5 + rand() % 26;
         record.avg_flat_area = 40.0 + (rand() % 1001) / 10.0;
-
         fprintf(out, "%s,%s,%s,%d,%s,%s,%d,%d,%.2f\n",
                 record.developer,
                 record.neighborhood,
@@ -80,14 +79,16 @@ void sort_mode(const char* input_file, const char* output_file, bool ascending) 
 
     // read
     char line[256];
+    char* record_type = malloc(9*sizeof(char));
     while (fgets(line, sizeof(line), in)) {
         Record record;
         sscanf(line, "%49[^,],%49[^,],%9[^,],%d,%3[^,],%3[^,],%d,%d,%lf",
                record.developer, record.neighborhood,
-               (char*)&record.type, &record.build_year,
+               record_type, &record.build_year,
                (char*)&record.has_elevator,
                (char*)&record.has_garbage_chute,
                &record.flat_count, &record.floor_count, &record.avg_flat_area);
+        record.type = string_to_building_type(record_type);  
         deque_push_back(&deque, record);
     }
 
@@ -106,9 +107,6 @@ void sort_mode(const char* input_file, const char* output_file, bool ascending) 
     Node* node = deque.head;
     while (node) {
         Record* record = &node->data;
-
-        // printf("Type value: %d\n", record->type);
-        // printf("Type string: %s\n", building_type_to_string(record->type));
 
         fprintf(out, "%s,%s,%s,%d,%s,%s,%d,%d,%.2f\n",
                 record->developer,

@@ -2,6 +2,7 @@
 #define RECORD_H
 
 #include <stdbool.h>
+#include <stdio.h>
 
 typedef enum {
     BUILDING_TYPE_PANEL,
@@ -24,5 +25,4 @@ typedef struct {
 const char* building_type_to_string(BuildingType type);
 
 BuildingType string_to_building_type(const char* str);
-
 #endif
