@@ -80,15 +80,20 @@ void sort_mode(const char* input_file, const char* output_file, bool ascending) 
     // read
     char line[256];
     char* record_type = malloc(9*sizeof(char));
+    char* has_elevator_str = malloc(3*sizeof(char));
+    char* has_garbage_chute_str = malloc(3*sizeof(char));
     while (fgets(line, sizeof(line), in)) {
         Record record;
         sscanf(line, "%49[^,],%49[^,],%9[^,],%d,%3[^,],%3[^,],%d,%d,%lf",
                record.developer, record.neighborhood,
                record_type, &record.build_year,
-               (char*)&record.has_elevator,
-               (char*)&record.has_garbage_chute,
+               has_elevator_str,
+               has_garbage_chute_str,
                &record.flat_count, &record.floor_count, &record.avg_flat_area);
-        record.type = string_to_building_type(record_type);  
+        record.type = string_to_building_type(record_type); 
+        record.has_elevator = strcmp(has_elevator_str, "YES") == 0;
+        record.has_garbage_chute = strcmp(has_garbage_chute_str, "YES") == 0;
+ 
         deque_push_back(&deque, record);
     }
 
@@ -107,7 +112,6 @@ void sort_mode(const char* input_file, const char* output_file, bool ascending) 
     Node* node = deque.head;
     while (node) {
         Record* record = &node->data;
-
         fprintf(out, "%s,%s,%s,%d,%s,%s,%d,%d,%.2f\n",
                 record->developer,
                 record->neighborhood,
