@@ -20,14 +20,14 @@ const char* building_type_to_string(BuildingType type) {
     }
 }
 
-//comparisons
-int compare_asc(const Record* a, const Record* b) {
-    return a->build_year - b->build_year;
-}
+// //comparisons
+// int compare_asc(const Record* a, const Record* b) {
+//     return a->build_year - b->build_year;
+// }
 
-int compare_desc(const Record* a, const Record* b) {
-    return b->build_year - a->build_year;
-}
+// int compare_desc(const Record* a, const Record* b) {
+//     return b->build_year - a->build_year;
+// }
 
 //generate
 void generate_mode(int count, const char* output_file) {
@@ -95,7 +95,7 @@ void sort_mode(const char* input_file, const char* output_file, bool ascending) 
     if (input_file) fclose(in);
 
     // gnome sort
-    gnome_sort(&deque, ascending ? compare_asc : compare_desc);
+    gnome_sort(&deque, ascending ? record_compare : record_compare);
 
     FILE* out = output_file ? fopen(output_file, "w") : stdout;
     if (!out) {

@@ -25,4 +25,6 @@ typedef struct {
 const char* building_type_to_string(BuildingType type);
 
 BuildingType string_to_building_type(const char* str);
+
+int record_compare(const Record* a, const Record* b);
 #endif
