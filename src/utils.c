@@ -99,7 +99,7 @@ void sort_mode(const char* input_file, const char* output_file, bool ascending) 
 
     if (input_file) fclose(in);
 
-    // gnome sort
+    
     gnome_sort(&deque, ascending ? record_compare : record_compare);
 
     FILE* out = output_file ? fopen(output_file, "w") : stdout;

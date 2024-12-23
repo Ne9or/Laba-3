@@ -24,29 +24,29 @@ void record_init(Record* record, const char* developer, const char* neighborhood
 }
 
  int compare_string(const char* st1, const char* st2) {
-    char sym1 = '\0';
-    char sym2 = '\0';
+    char symbol1 = '\0';
+    char symbol2 = '\0';
     
     if (st1 == st2){
         return 0;
     }
-    char* abt = "abcdefghijklmnopqrstuvwxyz"; 
+    char* alphabet = "abcdefghijklmnopqrstuvwxyz"; 
     for (int i = 0; st1[i] != '\0'; i++) { 
         if  (st2[i] == '\0') {
             return 1;
         }
-        sym1 = tolower(st1[i]);
-        sym2 = tolower(st2[i]);
-        if (sym1 != sym2) {
+        symbol1 = tolower(st1[i]);
+        symbol2 = tolower(st2[i]);
+        if (symbol1 != symbol2) {
             break;
         }
     }
 
-    for (int i = 0; abt[i] != '\0'; i++) {
-        if (sym1 == abt[i]){
+    for (int i = 0; alphabet[i] != '\0'; i++) {
+        if (symbol1 == alphabet[i]){
             return 1;
         }
-        if (sym2 == abt[i]) {
+        if (symbol2 == alphabet[i]) {
             return -1;
         }
     }   
@@ -62,11 +62,11 @@ int record_compare(const Record* a, const Record* b) {
     }
     result = compare_string(a->neighborhood, b->neighborhood);
     if (result != 0) {
-        return result;
+        return -result;
     }
     result = compare_string(building_type_to_string(a->type), building_type_to_string(b->type));
     if (result != 0) {
-        return result;
+        return -result;
     }
     if (a->build_year > b->build_year){
         result = 1;
